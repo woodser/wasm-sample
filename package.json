@@ -1,0 +1,38 @@
+{
+  "name": "wasm-sample",
+  "version": "0.0.1",
+  "description": "Sample web app which uses webassembly",
+  "main": "src/index.js",
+  "bin": {
+    "wasm-sample": "__assemble_browser_build.node.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woodser/wasm-sample.git"
+  },
+  "keywords": [
+    "webassembly",
+    "wasm",
+    "webpack"
+  ],
+  "author": "woodser",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/woodser/wasm-sample/issues"
+  },
+  "homepage": "https://github.com/woodser/wasm-sample#readme",
+  "devDependencies": {
+    "babel-core": "6.26.3",
+    "babel-loader": "8.0.2",
+    "babel-minify": "0.4.3",
+    "electron": "3.0.3",
+    "eslint": "5.6.0",
+    "webpack": "4.19.1",
+    "webpack-cli": "3.1.0",
+    "webpack-merge": "4.1.4",
+    "worker-loader": "2.0.0"
+  }
+}

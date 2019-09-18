@@ -16,9 +16,33 @@
 //  set_message = instance.exports.set_message;
 //  console.log("Done setting exports");
 //});
+//
+//
+//Module.onRuntimeInitialized = function() {
+//  console.log("Module is initialized!");
+//  console.log(Module);
+//}
 
+
+/**
+ * Sample browser application which uses a JavaScript library to interact
+ * with a Monero daemon using RPC and a Monero wallet using RPC and WASM
+ * bindings.
+ */
+
+"use strict"
+
+// imports
+const assert = require("assert");
+const foo_bridge = require("foo_bridge");  // this file is currently auto-generated then copied to build dir // TODO: automate
 
 Module.onRuntimeInitialized = function() {
   console.log("Module is initialized!");
   console.log(Module);
+  startApp();
+}
+
+// start the application
+async function startApp() {
+  console.log("Starting app...");
 }
