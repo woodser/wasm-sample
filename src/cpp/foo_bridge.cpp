@@ -1,27 +1,34 @@
 #include <iostream>
-#include "foo.cpp"
+#include "foo_bridge.h"
 
 using namespace std;
 
-int main() {
-  cout << "Hello world!" << endl;
-  foo my_foo;
-  my_foo.set_message("hello there");
-  cout << "Foo says: " << my_foo.get_message() << endl;
-  return 0;
-}
+//int main() {
+//  cout << "Hello world!" << endl;
+//  foo my_foo;
+//  my_foo.set_message("hello there");
+//  cout << "Foo says: " << my_foo.get_message() << endl;
+//  return 0;
+//}
 
-int new_foo() {
-  foo* ptr = new foo();
-  return (int) ptr;
-}
+namespace foo_bridge
+{
+  string foo_bridge::test_method(const string& args_string) {
+    cout << "test_method(" << args_string << ")" << endl;
+  }
 
-string get_message(int handle) {
-  foo* ptr = (foo*) handle;
-  return ptr->get_message();
-}
-
-void set_message(int handle, string msg) {
-  foo* ptr = (foo*) handle;
-  ptr->set_message(msg);
+//  int new_foo() {
+//    foo* ptr = new foo();
+//    return (int) ptr;
+//  }
+//
+//  string get_message(int handle) {
+//    foo* ptr = (foo*) handle;
+//    return ptr->get_message();
+//  }
+//
+//  void set_message(int handle, string msg) {
+//    foo* ptr = (foo*) handle;
+//    ptr->set_message(msg);
+//  }
 }
