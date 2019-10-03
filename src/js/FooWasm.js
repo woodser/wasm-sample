@@ -3,7 +3,22 @@
  */
 class FooWasm {
   
+  constructor(wasmModule) {
+    console.log("Constructing FooWasm with module");
+    console.log(wasmModule);
+    this.wasmModule = wasmModule;
+  }
+  
+  testMessage() {
+    //this.wasmModule.setMessage(msg);
+    console.log("invoking test_method()");
+    this.wasmModule.test_message();
+  }
+  
   setMessage(msg) {
+    console.log("Setting message");
+    this.wasmModule.setMessage(msg);
+    console.log("Done setting message");
     throw Error("FooWasm.setMessage() not implemented");
   }
   
