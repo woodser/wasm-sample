@@ -7,6 +7,7 @@
 // imports
 const assert = require("assert");
 const FooLocal = require("./js/FooLocal");
+const FooWasm = require("./js/FooWasm");
 
 //import FooWasm from "./js/WasmSample_WASM.js";
 //import FooWasmModule from "./js/WasmSample_WASM.wasm";
@@ -49,13 +50,41 @@ async function startApp() {
 //    console.log(wasmModule);
 //  })
   
+  const memory = new WebAssembly.Memory({ initial: 256, maximum: 256 });
   
-//  let importObject = { imports: { imported_func: arg => console.log(arg) } };
+  let imports = {};
+  imports.env = {};
+  imports.env.memoryBase = imports.env.memoryBase || 0;
+  imports.env.tableBase = imports.env.tableBase || 0;
+  imports.env.memory = new WebAssembly.Memory({ initial: 256 });
+  imports.env.table = new WebAssembly.Table({ initial: 0, element: 'anyfunc' });
+  imports.env.abortStackOverflow = function(arg) { throw new Error("Overflow: " + arg); }
+  imports.env.STACKTOP= 0;
+  imports.env.STACK_MAX = memory.buffer.byteLength;
+  imports.imported_func = function(arg) { console.log(arg); };
+  
+//  const env = {
+//      'abortStackOverflow': _ => { throw new Error('overflow'); },
+//      'table': new WebAssembly.Table({ initial: 0, maximum: 0, element: 'anyfunc' }),
+//      '__table_base': 0,
+//      'memory': memory,
+//      '__memory_base': 1024,
+//      'STACKTOP': 0,
+//      'STACK_MAX': memory.buffer.byteLength,
+//    };
+  
+  require("./js/WasmSample_WASM")().ready.then(function(thisModule) {
+    console.log(thisModule);
+  });
+  
+//  //let importObject = { imports: imports };
 //  fetch('./js/WasmSample_WASM.wasm').then(response =>
 //    response.arrayBuffer()
 //  ).then(bytes =>
-//    WebAssembly.instantiate(bytes, importObject)
+//    WebAssembly.instantiate(bytes, imports)
 //  ).then(results => {
+//    console.log("Results");
+//    console.log(results);
 //    // Do something with the results!
 //  });
   
