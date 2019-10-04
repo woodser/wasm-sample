@@ -1,10 +1,10 @@
 # Introduction
-This project demonstrates how to use a stateful C++ object, Foo, from JavaScript in a web application.
+This project demonstrates how to use a stateful C++ object, Foo.h/cpp, as a stateful JavaScript object, FooWasm.js, that runs in a web application using WebAssembly.
 
 # How to Run the Sample
 1. Install emscripten: https://emscripten.org/docs/getting_started/downloads.html
 2. `source <emscripten_path>/emsdk/emsdk_env.sh`
-3. `./bin/build-emcpp.sh` (builds WasmSample_WASM.js and WasmSample_WASM.wasm in the ./build directory)
+3. `./bin/build-emcpp.sh` (builds WasmSample_WASM.js and WasmSample_WASM.wasm to the ./build directory)
 4. Copy ./build/WasmSample_WASM.js and ./build/WasmSample_WASM.wasm to ./src
 5. `./bin/start_dev_browser ` 
 6. Open http://localhost:9100/ in a browser
