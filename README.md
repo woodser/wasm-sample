@@ -16,8 +16,8 @@ Note: the server used in `./bin_start_dev_browser` returns the wrong mime-type w
 The full stack from the stateful C++ Foo object to the browser is:
 
 1. foo.h/cpp
-2. foo_bridge.h/cpp
-3. index.cpp
+2. foo_bridge.h/cpp provides stateless wrappers which use pointer reference to interact with instances
+3. index.cpp registers emscripten bindings
 4. Build WasmSample_WASM.js/.wasm using `./bin/build-emcpp.sh`
 5. FooWasm.js encapsulates WasmSample_WASM module for instance implementation
 6. index.js requires("WasmSample_WASM") and constructs a FooWasm.js
