@@ -20,6 +20,7 @@ async function startApp() {
   fooLocal.setMessage("hello world");
   console.log("Foo local says: " + fooLocal.getMessage());
   
+  // demonstrate wasm foo
   require("./WasmSample_WASM")().ready.then(function(thisModule) {
     let fooWasm = new FooWasm(thisModule);
     fooWasm.setMessage("Hello from foo wasm");
