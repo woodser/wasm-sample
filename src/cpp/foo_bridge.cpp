@@ -1,5 +1,6 @@
 #include <iostream>
 #include "foo_bridge.h"
+#include "foo.h"
 
 using namespace std;
 
@@ -13,22 +14,17 @@ using namespace std;
 
 using namespace foo_bridge;
 
-string foo_bridge::test_method(const string& args_string) {
-  cout << "test_method(" << args_string << ")" << endl;
-  return args_string;
+int foo_bridge::new_foo() {
+  foo* ptr = new foo();
+  return (int) ptr;
 }
 
-//  int new_foo() {
-//    foo* ptr = new foo();
-//    return (int) ptr;
-//  }
-//
-//  string get_message(int handle) {
-//    foo* ptr = (foo*) handle;
-//    return ptr->get_message();
-//  }
-//
-//  void set_message(int handle, string msg) {
-//    foo* ptr = (foo*) handle;
-//    ptr->set_message(msg);
-//  }
+string foo_bridge::get_message(int handle) {
+  foo* ptr = (foo*) handle;
+  return ptr->get_message();
+}
+
+void foo_bridge::set_message(int handle, string msg) {
+  foo* ptr = reinterpret_cast<foo*>(handle);
+  ptr->set_message(msg);
+}

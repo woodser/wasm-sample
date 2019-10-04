@@ -40,77 +40,11 @@ async function startApp() {
   fooLocal.setMessage("hello world");
   console.log("Foo local says: " + fooLocal.getMessage());
   
-//  let importObject = { imports: { imported_func: arg => console.log(arg) } };
-//  fetch("./js/WasmSAmple_WASM.wasm")
-//  .then(response => response.arrayBuffer())
-//  .then(bits => WebAssembly.compile(bits))
-//  .then(module => { 
-//    let wasmModule = new WebAssembly.Instance(module, importObject);
-//    console.log("We have a module!!!");
-//    console.log(wasmModule);
-//  })
-  
-  const memory = new WebAssembly.Memory({ initial: 256, maximum: 256 });
-  
-  let imports = {};
-  imports.env = {};
-  imports.env.memoryBase = imports.env.memoryBase || 0;
-  imports.env.tableBase = imports.env.tableBase || 0;
-  imports.env.memory = new WebAssembly.Memory({ initial: 256 });
-  imports.env.table = new WebAssembly.Table({ initial: 0, element: 'anyfunc' });
-  imports.env.abortStackOverflow = function(arg) { throw new Error("Overflow: " + arg); }
-  imports.env.STACKTOP= 0;
-  imports.env.STACK_MAX = memory.buffer.byteLength;
-  imports.imported_func = function(arg) { console.log(arg); };
-  
-//  const env = {
-//      'abortStackOverflow': _ => { throw new Error('overflow'); },
-//      'table': new WebAssembly.Table({ initial: 0, maximum: 0, element: 'anyfunc' }),
-//      '__table_base': 0,
-//      'memory': memory,
-//      '__memory_base': 1024,
-//      'STACKTOP': 0,
-//      'STACK_MAX': memory.buffer.byteLength,
-//    };
-  
   require("./WasmSample_WASM")().ready.then(function(thisModule) {
     let fooWasm = new FooWasm(thisModule);
-    fooWasm.testMessage();
+    fooWasm.setMessage("Hello from foo wasm");
+    console.log("Foo wasm says: " + fooWasm.getMessage());
   });
-  
-//  //let importObject = { imports: imports };
-//  fetch('./js/WasmSample_WASM.wasm').then(response =>
-//    response.arrayBuffer()
-//  ).then(bytes =>
-//    WebAssembly.instantiate(bytes, imports)
-//  ).then(results => {
-//    console.log("Results");
-//    console.log(results);
-//    // Do something with the results!
-//  });
-  
-//  //const WasmSample = await require("./js/WasmSample_WASM");
-//  require("./js/WasmSample_WASM")().ready.then(function(thisModule) {
-//    console.log(thisModule);
-//  });
-  
-  //await FooWasm();
-  
-  //const FooWasm = require("./js/FooWasm");
-
-  
-  //await new Promise(function(resolve) { setTimeout(resolve, 1000); });
-  
-  //WasmSample();
-  //temp();
-  
-  
-  // demonstrate wasm foo
-  //let fooWasm = new FooWasm();
-//  let fooWasm = new FooWasm(WasmSample);
-//  fooWasm.testMessage();
-//  fooWasm.setMessage("hello world from wasm");
-//  console.log("Foo wasm says: " + FooWasm.getMessage());
 }
 
 

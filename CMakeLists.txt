@@ -12,6 +12,7 @@ set(
     src/cpp/index.cpp
     #
     src/cpp/foo_bridge.cpp
+    src/cpp/foo.cpp
 )
 
 set (

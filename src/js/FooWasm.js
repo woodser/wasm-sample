@@ -4,31 +4,16 @@
 class FooWasm {
   
   constructor(wasmModule) {
-    console.log("Constructing FooWasm with module");
-    console.log(wasmModule);
     this.wasmModule = wasmModule;
-  }
-  
-  testMessage() {
-    //this.wasmModule.setMessage(msg);
-    console.log("invoking test_method()");
-    console.log(this.wasmModule.test_method);
-    
-    //let test_method = this.wasmModule.cwrap('test_method', 'string', ['string']);
-    //test_method("test_arg");
-    
-    this.wasmModule.test_method("test arg");
-  }
-  
-  setMessage(msg) {
-    console.log("Setting message");
-    this.wasmModule.setMessage(msg);
-    console.log("Done setting message");
-    throw Error("FooWasm.setMessage() not implemented");
+    this.cppAddress = this.wasmModule.new_foo();
   }
   
   getMessage() {
-    throw Error("FooWasm.getMessage() not implemented");
+    return this.wasmModule.get_message(this.cppAddress);
+  }
+  
+  setMessage(msg) {
+    this.wasmModule.set_message(this.cppAddress, msg);
   }
 }
 

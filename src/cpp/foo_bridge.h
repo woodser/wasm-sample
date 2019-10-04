@@ -11,7 +11,9 @@ using namespace std;
 
 namespace foo_bridge
 {
-  string test_method(const string& args_string);
+  int new_foo();
+  string get_message(int handle);
+  void set_message(int handle, const string msg);
 }
 
 #endif /* foo_bridge_h */
