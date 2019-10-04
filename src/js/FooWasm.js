@@ -27,4 +27,8 @@ class FooWasm {
   }
 }
 
-module.exports = FooWasm;
+module.exports = async function() {
+  let WasmSampleModule = await require("./WasmSample_WASM.wasm");
+  console.log(WasmSampleModule);
+  return new FooWasm(WasmSampleModule);
+}

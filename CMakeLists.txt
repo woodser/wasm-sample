@@ -19,7 +19,7 @@ set (
     # TODO? does EXPORT_NAME need to be the same for both targets? (or should it be set per-target with …_WASM, …_ASMJS?)
     "-Wall -std=c++11 \
 --bind -s MODULARIZE=1 \
--s 'EXPORT_NAME=\"MyMoneroCoreCpp\"' \
+-s 'EXPORT_NAME=\"WasmSample\"' \
 --llvm-lto 1 \
 -s ERROR_ON_UNDEFINED_SYMBOLS=0 \
 -s ASSERTIONS=2 \

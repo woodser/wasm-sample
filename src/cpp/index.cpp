@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <emscripten/bind.h>
 
-#include "foo_bridge.cpp"
+#include "foo_bridge.h"
 
 // register bindings from C++ to JS using emscripten
 EMSCRIPTEN_BINDINGS(module)
