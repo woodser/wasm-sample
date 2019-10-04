@@ -73,8 +73,9 @@ async function startApp() {
 //      'STACK_MAX': memory.buffer.byteLength,
 //    };
   
-  require("./js/WasmSample_WASM")().ready.then(function(thisModule) {
-    console.log(thisModule);
+  require("./WasmSample_WASM")().ready.then(function(thisModule) {
+    let fooWasm = new FooWasm(thisModule);
+    fooWasm.testMessage();
   });
   
 //  //let importObject = { imports: imports };

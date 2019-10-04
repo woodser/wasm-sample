@@ -11,11 +11,12 @@ using namespace std;
 //  return 0;
 //}
 
-namespace foo_bridge
-{
-  string foo_bridge::test_method(const string& args_string) {
-    cout << "test_method(" << args_string << ")" << endl;
-  }
+using namespace foo_bridge;
+
+string foo_bridge::test_method(const string& args_string) {
+  cout << "test_method(" << args_string << ")" << endl;
+  return args_string;
+}
 
 //  int new_foo() {
 //    foo* ptr = new foo();
@@ -31,4 +32,3 @@ namespace foo_bridge
 //    foo* ptr = (foo*) handle;
 //    ptr->set_message(msg);
 //  }
-}

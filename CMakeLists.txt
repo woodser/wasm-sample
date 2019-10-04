@@ -10,6 +10,8 @@ set(
     SRC_FILES
     #
     src/cpp/index.cpp
+    #
+    src/cpp/foo_bridge.cpp
 )
 
 set (

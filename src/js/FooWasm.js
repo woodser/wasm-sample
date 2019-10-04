@@ -12,7 +12,12 @@ class FooWasm {
   testMessage() {
     //this.wasmModule.setMessage(msg);
     console.log("invoking test_method()");
-    this.wasmModule.test_message();
+    console.log(this.wasmModule.test_method);
+    
+    //let test_method = this.wasmModule.cwrap('test_method', 'string', ['string']);
+    //test_method("test_arg");
+    
+    this.wasmModule.test_method("test arg");
   }
   
   setMessage(msg) {
