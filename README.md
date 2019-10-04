@@ -1,5 +1,5 @@
 # Introduction
-This project demonstrates how to use a stateful C++ object, Foo.h/cpp, as a stateful JavaScript object, FooWasm.js, that runs in a web application using WebAssembly.
+This project demonstrates how to use a stateful C++ object, foo.h/cpp, as a stateful JavaScript object, FooWasm.js, that runs in a web application using WebAssembly.
 
 # How to Run the Sample
 1. Install emscripten: https://emscripten.org/docs/getting_started/downloads.html
