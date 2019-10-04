@@ -21,5 +21,5 @@ The full stack from the stateful C++ Foo object to the browser is:
 4. Build WasmSample_WASM.js/.wasm using `./bin/build-emcpp.sh`
 5. FooWasm.js encapsulates WasmSample_WASM module for instance implementation
 6. index.js requires("WasmSample_WASM") and constructs a FooWasm.js
-7. webpack script creates `./browser_build` with index.html, wasm-sample-bundle.js, and WasmSample_WASM.wasm and starts a dev server using `./bin/start_dev_browser`
-8. browser loads and executes application
+7. Webpack script creates `./browser_build` with index.html, wasm-sample-bundle.js, and WasmSample_WASM.wasm and starts a dev server using `./bin/start_dev_browser`
+8. Browser loads and executes application
