@@ -4,17 +4,26 @@
 class FooWasm {
   
   constructor(wasmModule) {
-    this.wasmModule = wasmModule;
-    this.cppAddress = this.wasmModule.new_foo();
+    this.cppAddress = FooWasm.WASM_MODULE.new_foo();
   }
   
   getMessage() {
-    return this.wasmModule.get_message(this.cppAddress);
+    return FooWasm.WASM_MODULE.get_message(this.cppAddress);
   }
   
   setMessage(msg) {
-    this.wasmModule.set_message(this.cppAddress, msg);
+    FooWasm.WASM_MODULE.set_message(this.cppAddress, msg);
   }
 }
 
-module.exports = FooWasm;
+module.exports = async function() {
+  return new Promise(function(resolve, reject) {
+    require("../WasmSample_WASM")().ready.then(function(module) {
+      FooWasm.WASM_MODULE = module;
+      resolve(FooWasm);
+    }).catch(function(e) {
+      console.log("Error loading WasmSample_WASM:", e);
+      reject(e);
+    });
+  });
+}

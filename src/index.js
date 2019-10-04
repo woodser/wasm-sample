@@ -8,7 +8,6 @@
 // imports
 const assert = require("assert");
 const FooLocal = require("./js/FooLocal");
-const FooWasm = require("./js/FooWasm");
 
 // start the application
 startApp();
@@ -20,10 +19,11 @@ async function startApp() {
   fooLocal.setMessage("hello world");
   console.log("Foo local says: " + fooLocal.getMessage());
   
+  // import FooWasm which loads webassembly module
+  const FooWasm = await require("./js/FooWasm")();
+  
   // demonstrate wasm foo
-  require("./WasmSample_WASM")().ready.then(function(thisModule) {
-    let fooWasm = new FooWasm(thisModule);
-    fooWasm.setMessage("Hello from foo wasm");
-    console.log("Foo wasm says: " + fooWasm.getMessage());
-  });
+  let fooWasm = new FooWasm();
+  fooWasm.setMessage("Hello from foo wasm");
+  console.log("Foo wasm says: " + fooWasm.getMessage());
 }
