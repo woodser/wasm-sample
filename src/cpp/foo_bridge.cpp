@@ -25,6 +25,6 @@ string foo_bridge::get_message(int handle) {
 }
 
 void foo_bridge::set_message(int handle, string msg) {
-  foo* ptr = reinterpret_cast<foo*>(handle);
+  foo* ptr = (foo*) handle;
   ptr->set_message(msg);
 }
